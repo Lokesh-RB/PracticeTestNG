@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Failed suite [Failed suite [Default suite]]]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="Default test(failed)(failed)(failed)">
+    <classes>
+      <class name="TestNGPayC.Business">
+        <methods>
+          <include name="Delete_wallet"/>
+          <include name="SignInsetup"/>
+          <include name="Delete_Schedulepayment"/>
+          <include name="Delete_Beneficiary"/>
+          <include name="Manage_Beneficiary"/>
+          <include name="Fiat_PayCircle_To_PayCircle_Transfer"/>
+          <include name="Transfer_Others_Invoice"/>
+          <include name="From_dashboard_search_transfer_PayCircle_to_Others"/>
+        </methods>
+      </class> <!-- TestNGPayC.Business -->
+    </classes>
+  </test> <!-- Default test(failed)(failed)(failed) -->
+</suite> <!-- Failed suite [Failed suite [Failed suite [Default suite]]] -->

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
+  <listeners>
+    <listener class-name="listeners.MyAnnotationTransfer"/>
+  </listeners>
+  <test thread-count="5" name="Test(failed)">
+    <classes>
+      <class name="TestNGPayC.NewExperiment">
+        <methods>
+          <include name="testTwitter"/>
+        </methods>
+      </class> <!-- TestNGPayC.NewExperiment -->
+      <class name="TestNGPayC.Business">
+        <methods>
+          <include name="Recent_Deposit"/>
+          <include name="Deposit_ACH"/>
+          <include name="Transfer_OneTime"/>
+          <include name="Add_Wallet"/>
+          <include name="Recent_Self_Transfer"/>
+          <include name="SignInsetup"/>
+          <include name="Trade_Buy"/>
+          <include name="Selftransfer"/>
+          <include name="From_dashboard_search_transfer_PayCircle_to_PayCircle"/>
+          <include name="Recent_Transfer"/>
+          <include name="Trade_SELL"/>
+          <include name="Deposit_Wire"/>
+          <include name="Manage_Beneficiary"/>
+          <include name="Login"/>
+          <include name="Transfer_Recurring"/>
+          <include name="Fiat_PayCircle_to_Others"/>
+          <include name="Fiat_PayCircle_To_PayCircle_Transfer"/>
+          <include name="From_dashboard_search_transfer_PayCircle_to_Others"/>
+          <include name="From_dashboard_search_Deposit"/>
+        </methods>
+      </class> <!-- TestNGPayC.Business -->
+      <class name="TestNGPayC.Individual">
+        <methods>
+          <include name="Recent_Deposit"/>
+          <include name="Transfer_OneTime"/>
+          <include name="Add_Wallet"/>
+          <include name="Deposit_ACH"/>
+          <include name="splitpayment_remainder_markaspaid"/>
+          <include name="Splitpayment"/>
+          <include name="Trade_Buy"/>
+          <include name="Selftransfer"/>
+          <include name="Recent_selftransfer"/>
+          <include name="LoginSetup"/>
+          <include name="Recent_Transfer"/>
+          <include name="Transfer_Others"/>
+          <include name="Transfer_Recurring"/>
+          <include name="Deposit_Wire"/>
+          <include name="Trade_Sell"/>
+          <include name="Manage_Beneficiary"/>
+          <include name="Fiat_PayCircle_To_PayCircle_Transfer"/>
+          <include name="tearDown"/>
+        </methods>
+      </class> <!-- TestNGPayC.Individual -->
+    </classes>
+  </test> <!-- Test(failed) -->
+</suite> <!-- Failed suite [Suite] -->
