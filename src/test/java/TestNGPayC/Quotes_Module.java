@@ -118,18 +118,25 @@ public class Quotes_Module
 	  	      driver.findElement(By.xpath("//button[contains(text(),'Next')]")).click();      	
 	        }
 	  
-	   /*    
+	      
 	        @Test(priority=3, dependsOnMethods= ("Login"))
 	        void Create_Quote() throws InterruptedException
 	        {
 	        	driver.findElement(By.xpath("//p[contains(text(),'Commerce')]")).click();
+	        	Thread.sleep(2000);
 	    		driver.findElement(By.xpath("//p[contains(text(),'Quotes')]")).click();
+	        	Thread.sleep(2000);
+
 	    		driver.findElement(By.xpath("//div[@class='d-flex w-50 justify-content-end gap-2']")).click();
+	        	Thread.sleep(2000);
+
 	    		driver.findElement(By.xpath("//button[contains(text(),'Create Quote')]")).click();
-	        	
+	        	Thread.sleep(2000);
+
 	    		WebElement sub=driver.findElement(By.xpath("//input[@name='subject']"));
 	    		sub.sendKeys(generateRandomsubject());
-	    		
+	        	Thread.sleep(2000);
+
 	    		driver.findElement(By.xpath("(//div[@class=' css-qav5hl-singleValue'])[1]")).click();
 	    		Thread.sleep(500);
 	    		driver.findElement(By.xpath("//div[contains(text(),'Negotiation')]")).click();
@@ -151,8 +158,14 @@ public class Quotes_Module
 
 	    		
 	    		driver.findElement(By.xpath("(//span[@class='cursorPointer pt-2 ps-1'])[2]")).click();
+	        	Thread.sleep(2000);
+
 	    		driver.findElement(By.xpath("//td[contains(text(),'pola')]")).click();
+	        	Thread.sleep(2000);
+
 	    		driver.findElement(By.xpath("//button[contains(text(),'Done')]")).click();
+	        	Thread.sleep(2000);
+
 	    		
 	    		 Thread.sleep(2000);
 	    		JavascriptExecutor js1= (JavascriptExecutor)driver;
@@ -227,7 +240,7 @@ public class Quotes_Module
 		    		   System.out.println("No success or error message found.");
 		    	   }		          		    		
 	        }
-	        
+	   /*
 	      
 	        @Test(priority=4, dependsOnMethods= ("Create_Quote"))
 	        void Edit_Quote() throws InterruptedException
@@ -663,7 +676,7 @@ public class Quotes_Module
 	        	    System.out.println("Test Failed: The user navigated to a different page.");
 	        	}    	        
 	        } 
-	     */
+	     
 	        @Test(priority=11, dependsOnMethods= ("Login"))
 	        void Quote_Share() throws InterruptedException 
 	        {
@@ -735,7 +748,7 @@ public class Quotes_Module
 	   	      }   
      	
 	        }
-	    /*
+	   
 	        @Test(priority=12, dependsOnMethods= ("Login"))
 	        void Quote_Mass_Update() 
 	        {
