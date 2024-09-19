@@ -27,6 +27,36 @@ public class Invoice {
         Random random = new Random();
         return MESSAGE_ELEMENTS[random.nextInt(MESSAGE_ELEMENTS.length)];
     }
+    public static String generateRandomCity() {
+    	String[] City= {"Vatican City","Huvina Hadagali","Davangere","Bangalore"};
+    	Random random=new Random();
+    	return City[random.nextInt(City.length)];
+    	
+    }
+    public static String generateRandomBillingStreet() {
+    	String[] MESSAGE_ELEMENTS= {"Palace road", "Church  road", "Palk street", "HSR Layout"};
+    	Random random= new Random();
+    	return MESSAGE_ELEMENTS[random.nextInt(MESSAGE_ELEMENTS.length)];
+    	
+    }
+    public static String generateRandomCode() {
+    	String[]Code= {"583216","583215","583214","583213"};
+    	Random random=new Random();
+    	return Code[random.nextInt(Code.length)];
+    			
+    }
+    
+    public static String generateRandomCountry() {
+    	String[] Country= {"New India","Japan","Sri Lanka","Saudi Arabia"};
+    	Random random=new Random();
+    	return Country[random.nextInt(Country.length)];
+    }
+    
+    public static String generateRandomState() {
+    	String[] State= {"Karnataka","Andhra Pradesh","Arunachal Pradesh","Madhya Pradesh"};
+    	Random random=new Random();
+    	return State[random.nextInt(State.length)];
+    }
  
 	 // Static method to generate a random last name
     public static String generateRandomLastName() {
@@ -47,6 +77,14 @@ public class Invoice {
         return MESSAGE_ELEMENTS[random.nextInt(MESSAGE_ELEMENTS.length)];
     }
   
+    public static String generateRandomExciseduty() 
+    {
+    	String[]MESSAGE_ELEMENTS= {"102","50","564","345"};
+    	Random random=new Random();
+    	return MESSAGE_ELEMENTS[random.nextInt(MESSAGE_ELEMENTS.length)];
+    }
+    
+    
 
 	WebDriver driver;
 	
@@ -74,6 +112,7 @@ public class Invoice {
 	      driver.findElement(By.xpath("//button[contains(text(),'Next')]")).click();
 	}
 	
+	/*
 	@Test(priority=3)
 	void Invoice_Create_Mandatory_fields() throws InterruptedException 
 	{
@@ -433,5 +472,269 @@ public class Invoice {
 		} catch (Exception e) {
 			System.out.println("Error: " + "Other page is displayed");
 		}		
+	}
+	
+	@Test(priority=10)
+	void Invoice_Mass_Delete() 
+	{
+	      driver.findElement(By.xpath("//p[contains(text(),'Home')]")).click();
+		  driver.findElement(By.xpath("//p[contains(text(),'Commerce')]")).click();
+	      driver.findElement(By.xpath("//p[contains(text(),'Invoice')]")).click();
+		
+	      driver.findElement(By.xpath("//div[@class='d-flex w-50 justify-content-end gap-2']")).click();
+	      driver.findElement(By.xpath("(//input[@id='vehicle1'])[1]")).click();
+	      driver.findElement(By.xpath("(//input[@id='vehicle1'])[2]")).click();
+	      driver.findElement(By.xpath("(//input[@id='vehicle1'])[3]")).click();
+	      driver.findElement(By.xpath("(//input[@id='vehicle1'])[4]")).click();
+	      
+	      driver.findElement(By.xpath("//div[@class=' css-1qpx96c-indicatorContainer']")).click();
+  	  driver.findElement(By.xpath("//div[contains(text(),'Mass Delete')]")).click();
+		driver.findElement(By.xpath("//button[contains(text(),'Delete')]")).click();
+		
+		
+
+ 	   WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(10));
+ 	   
+ 	   try {
+ 		   WebElement successMessage=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h4[contains(text(),'Deletion successful')]")));
+ 		   // If success message is found, print it
+		         System.out.println("Success message: " + successMessage.getText());
+ 	   }catch(Exception e) {
+ 		   System.out.println("No success or error message found.");
+ 	   }	    		
+ }
+		
+	@Test(priority=11)
+	void Invoice_Mass_Transfer() throws InterruptedException
+	{
+	      driver.findElement(By.xpath("//p[contains(text(),'Home')]")).click();
+		  driver.findElement(By.xpath("//p[contains(text(),'Commerce')]")).click();
+	      driver.findElement(By.xpath("//p[contains(text(),'Invoice')]")).click();
+		
+	      driver.findElement(By.xpath("//div[@class='d-flex w-50 justify-content-end gap-2']")).click();
+	      driver.findElement(By.xpath("(//input[@id='vehicle1'])[1]")).click();
+	      driver.findElement(By.xpath("(//input[@id='vehicle1'])[2]")).click();
+	      driver.findElement(By.xpath("(//input[@id='vehicle1'])[3]")).click();
+	      driver.findElement(By.xpath("(//input[@id='vehicle1'])[4]")).click();
+	      
+	      driver.findElement(By.xpath("//div[@class=' css-1qpx96c-indicatorContainer']")).click();
+	      driver.findElement(By.xpath("//div[contains(text(),'Mass Transfer')]")).click();
+		  
+	      driver.findElement(By.xpath("//img[@src='/static/media/user-search-01.f7897915c904c53cc76c49ced9419915.svg']")).click();
+  		
+  		
+  		// WebDriverWait wait = new WebDriverWait(driver, 10);
+      WebElement name =driver.findElement(By.xpath("//span[contains(text(),'Lokesh RB')]"));
+      Thread.sleep(1000);
+
+      String currentname=name.getText();
+      Thread.sleep(1000);
+      if(currentname.equals("BaahuBali Indra"))
+      {
+          Thread.sleep(1000);
+
+      	driver.findElement(By.xpath("//td[contains(text(),'lokeshrb@mailinator.com')]")).click();
+      	
+      }
+      else {
+          Thread.sleep(1000);
+
+      	driver.findElement(By.xpath("//td[contains(text(),'Prasanavarma123@mailinator.com')]")).click();
+      }
+      Thread.sleep(1000);
+
+      driver.findElement(By.xpath("(//button[contains(text(),'Done')])[2]")).click();
+      Thread.sleep(1000);
+
+	        driver.findElement(By.xpath("//button[contains(text(),'Done')]")).click();
+      	}
+		
+	@Test(priority=12)
+	void Invoice_Individual_Edit() throws InterruptedException
+	{
+	      driver.findElement(By.xpath("//p[contains(text(),'Home')]")).click();
+		  driver.findElement(By.xpath("//p[contains(text(),'Commerce')]")).click();
+	      driver.findElement(By.xpath("//p[contains(text(),'Invoice')]")).click();
+      	  driver.findElement(By.xpath("//div[@class='d-flex w-50 justify-content-end gap-2']")).click();
+
+	      driver.findElement(By.xpath("(//td[@class='overflow_text pe-1 leadName cursorPointer'])[1]")).click();
+	      Thread.sleep(1000);
+		  JavascriptExecutor js=(JavascriptExecutor)driver;
+		  js.executeScript("window.scrollTo(0,500)");
+		  Thread.sleep(2000);
+	      
+		 WebElement SubIn= driver.findElement(By.xpath("//input[@name='subjectInfo']"));
+		 SubIn.click();
+		 SubIn.clear();
+		 SubIn.sendKeys(generateRandomsubject());
+		 Thread.sleep(500);
+		 driver.findElement(By.xpath("//img[@src='/static/media/Group 71.de961e5da5c06812614a1ab6e7647c56.svg']")).click();
+		 Thread.sleep(500);
+		 
+		WebElement sales=driver.findElement(By.xpath("//input[@name='salesCommissionInfo']"));
+		sales.click();
+		sales.clear();
+		 Thread.sleep(500);
+		 sales.sendKeys(generateRandomExciseduty());
+		 Thread.sleep(500);
+		 driver.findElement(By.xpath("//img[@src='/static/media/Group 71.de961e5da5c06812614a1ab6e7647c56.svg']")).click();
+		 Thread.sleep(500);
+		 
+		WebElement ranPurcOrd=driver.findElement(By.xpath("//input[@name='purchaseOrderInfo']"));
+		ranPurcOrd.click();
+		ranPurcOrd.clear();
+		ranPurcOrd.sendKeys(generateRandompurchaseorder());
+		 Thread.sleep(500);
+		 driver.findElement(By.xpath("//img[@src='/static/media/Group 71.de961e5da5c06812614a1ab6e7647c56.svg']")).click();
+		 Thread.sleep(500);
+		 
+		 WebElement	Execise= driver.findElement(By.xpath("//input[@name='exciseDutyInfo']"));
+		 Execise.click();
+		 Execise.clear();
+		 Thread.sleep(500);
+		 Execise.sendKeys(generateRandomExciseduty());
+		 Thread.sleep(500);
+		 driver.findElement(By.xpath("//img[@src='/static/media/Group 71.de961e5da5c06812614a1ab6e7647c56.svg']")).click();
+		 Thread.sleep(500);
+		 
+		 //Address Info
+		 Thread.sleep(2000);
+ 		JavascriptExecutor js1= (JavascriptExecutor)driver;
+ 		js1.executeScript("window.scrollTo(0,900)");
+ 		 Thread.sleep(2000);
+ 		
+ 		WebElement street=driver.findElement(By.xpath("//input[@name='billingStreetInfo']"));
+		 street.click();
+		 street.clear();
+ 		street.sendKeys(generateRandomBillingStreet());
+ 		driver.findElement(By.xpath("//img[@src='/static/media/Group 71.de961e5da5c06812614a1ab6e7647c56.svg']")).click();
+ 		Thread.sleep(1000);
+ 		
+ 		WebElement city=driver.findElement(By.xpath("//input[@name='billingCityInfo']"));
+ 		city.click();
+ 		city.clear();
+ 		city.sendKeys(generateRandomCity());
+ 		driver.findElement(By.xpath("//img[@src='/static/media/Group 71.de961e5da5c06812614a1ab6e7647c56.svg']")).click();
+
+ 		Thread.sleep(1000);
+
+ 		WebElement state=driver.findElement(By.xpath("//input[@name='billingStateInfo']"));
+ 		state.click();
+ 		state.clear();
+ 		state.sendKeys(generateRandomState());
+ 		driver.findElement(By.xpath("//img[@src='/static/media/Group 71.de961e5da5c06812614a1ab6e7647c56.svg']")).click();
+
+ 		Thread.sleep(1000);
+
+ 		WebElement code=driver.findElement(By.xpath("//input[@name='billingCodeInfo']"));
+ 		code.click();
+ 		code.clear();
+ 		code.sendKeys(generateRandomCode());
+ 		driver.findElement(By.xpath("//img[@src='/static/media/Group 71.de961e5da5c06812614a1ab6e7647c56.svg']")).click();
+
+ 		Thread.sleep(1000);
+
+ 		WebElement country=driver.findElement(By.xpath("//input[@name='billingCountryInfo']"));
+ 		country.click();
+ 		country.clear();
+ 		country.sendKeys(generateRandomCountry());
+ 		driver.findElement(By.xpath("//img[@src='/static/media/Group 71.de961e5da5c06812614a1ab6e7647c56.svg']")).click();
+
+ 		
+ 		//Shipping 
+ 		Thread.sleep(1000);
+
+ 		WebElement street1=driver.findElement(By.xpath("//input[@name='shippingStreetInfo']"));
+ 		street1.click();
+ 		street1.clear();
+ 		street1.sendKeys(generateRandomBillingStreet());
+ 		driver.findElement(By.xpath("//img[@src='/static/media/Group 71.de961e5da5c06812614a1ab6e7647c56.svg']")).click();
+
+ 		Thread.sleep(1000);
+
+ 		WebElement city1=driver.findElement(By.xpath("//input[@name='shippingCityInfo']"));
+ 		city1.click();
+ 		city1.clear();
+ 		city1.sendKeys(generateRandomCity());
+ 		driver.findElement(By.xpath("//img[@src='/static/media/Group 71.de961e5da5c06812614a1ab6e7647c56.svg']")).click();
+
+ 		Thread.sleep(1000);
+
+ 		WebElement state1=driver.findElement(By.xpath("//input[@name='shippingStateInfo']"));
+ 		state1.click();
+ 		state1.clear();
+ 		state1.sendKeys(generateRandomState());
+ 		driver.findElement(By.xpath("//img[@src='/static/media/Group 71.de961e5da5c06812614a1ab6e7647c56.svg']")).click();
+
+ 		Thread.sleep(1000);
+
+ 		WebElement code1=driver.findElement(By.xpath("//input[@name='shippingCodeInfo']"));
+ 		code1.click();
+ 		code1.clear();
+ 		code1.sendKeys(generateRandomCode());
+ 		driver.findElement(By.xpath("//img[@src='/static/media/Group 71.de961e5da5c06812614a1ab6e7647c56.svg']")).click();
+
+ 		Thread.sleep(1000);
+
+ 		WebElement country1=driver.findElement(By.xpath("//input[@name='shippingCountryInfo']"));
+ 		country1.click();
+ 		country1.clear();
+ 		country1.sendKeys(generateRandomCountry());
+ 		driver.findElement(By.xpath("//img[@src='/static/media/Group 71.de961e5da5c06812614a1ab6e7647c56.svg']")).click();
+
+ 		Thread.sleep(1000);	 
+	}
+	*/
+	
+	@Test(priority=13)
+	void Invoice_Note() throws InterruptedException
+	{
+	  driver.findElement(By.xpath("//p[contains(text(),'Home')]")).click();
+	  driver.findElement(By.xpath("//p[contains(text(),'Commerce')]")).click();
+      driver.findElement(By.xpath("//p[contains(text(),'Invoice')]")).click();
+	  driver.findElement(By.xpath("//div[@class='d-flex w-50 justify-content-end gap-2']")).click();
+
+      driver.findElement(By.xpath("(//td[@class='overflow_text pe-1 leadName cursorPointer'])[1]")).click();
+      Thread.sleep(1000);
+	 
+      driver.findElement(By.xpath("//li[contains(text(),'Notes')]")).click();
+	    Thread.sleep(1000);
+
+	    driver.findElement(By.xpath("//textarea[@class='notesClass']")).click();
+	    driver.findElement(By.xpath("//textarea[@class='notesClass']")).sendKeys("dss efewfewfd ");
+	    
+	    driver.findElement(By.xpath("//input[@placeholder='Add Title']")).sendKeys("rty rtytyrty ");
+	    
+		
+   	String filepath= "C:\\Users\\Lokesh R B\\Desktop\\New Docx\\sa1.jpg";
+   	WebElement fileinput=driver.findElement(By.xpath("(//input[@type='file'])"));
+   	fileinput.sendKeys(filepath);         	
+    	driver.findElement(By.xpath("//button[@class='editNoteButton']")).click(); 
+	    
 	}	
+	
+	
+	@Test(priority=14)
+	void Invoice_Edit_Note() throws InterruptedException
+	{
+	  driver.findElement(By.xpath("//p[contains(text(),'Home')]")).click();
+	  driver.findElement(By.xpath("//p[contains(text(),'Commerce')]")).click();
+      driver.findElement(By.xpath("//p[contains(text(),'Invoice')]")).click();
+	  driver.findElement(By.xpath("//div[@class='d-flex w-50 justify-content-end gap-2']")).click();
+
+      driver.findElement(By.xpath("(//td[@class='overflow_text pe-1 leadName cursorPointer'])[1]")).click();
+      Thread.sleep(1000);
+	 
+      driver.findElement(By.xpath("//li[contains(text(),'Notes')]")).click();
+	    Thread.sleep(1000);
+	    driver.findElement(By.xpath("(//button[@class='editNoteButton'])[1]")).click();
+	    driver.findElement(By.xpath("//textarea[@class='notesClass']")).click();
+	    driver.findElement(By.xpath("//textarea[@class='notesClass']")).clear();
+	    driver.findElement(By.xpath("//textarea[@class='notesClass']")).sendKeys("dss efewfewfd ");
+	    driver.findElement(By.xpath("//input[@placeholder='Add Title']")).clear();
+	    driver.findElement(By.xpath("//input[@placeholder='Add Title']")).sendKeys("rty rtytyrty ");        	
+      	driver.findElement(By.xpath("(//button[@class='editNoteButton'])[2]")).click();
+	
+	
+	}
 }
