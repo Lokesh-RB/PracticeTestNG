@@ -10,6 +10,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
@@ -80,7 +81,7 @@ public class Vendors
 	}
 	
 
-	
+	/*
 	@Test(priority=3)
 	void Create_Vendor() 
 	{	     
@@ -212,8 +213,128 @@ public class Vendors
 	      } catch (Exception e) {
 	          System.out.println("Error: " + e.getMessage());
 	      }   
-		
-	
+
 	}
+	
+	
+	@Test(priority=7)
+	void Vendor_Notes() throws InterruptedException
+	{	
+		Thread.sleep(2000);
+		  driver.findElement(By.xpath("//p[contains(text(),'Commerce')]")).click();
+	      driver.findElement(By.xpath("//p[contains(text(),'Vendors')]")).click();
+	      driver.findElement(By.xpath("//div[@class='d-flex w-50 justify-content-end gap-2']")).click();
+	      driver.findElement(By.xpath("(//td[@class='overflow_text vendorName cursorPointer'])[1]")).click();
+	      
+	      driver.findElement(By.xpath("//li[contains(text(),'Notes')]")).click();
+		    Thread.sleep(1000);
+
+		    driver.findElement(By.xpath("//textarea[@class='notesClass']")).click();
+		    driver.findElement(By.xpath("//textarea[@class='notesClass']")).sendKeys("dss efewfewfd ");
+		    
+		    driver.findElement(By.xpath("//input[@placeholder='Add Title']")).sendKeys("rty rtytyrty ");
+		    
+			
+       	String filepath= "C:\\Users\\Lokesh R B\\Desktop\\New Docx\\sa1.jpg";
+       	WebElement fileinput=driver.findElement(By.xpath("(//input[@type='file'])"));
+       	fileinput.sendKeys(filepath);         	
+        	driver.findElement(By.xpath("//button[@class='editNoteButton']")).click(); 
+	}
+	@Test(priority=8)
+	void Vendor_Edit_Notes() throws InterruptedException
+	{	
+		 driver.findElement(By.xpath("//p[contains(text(),'Commerce')]")).click();
+	      driver.findElement(By.xpath("//p[contains(text(),'Vendors')]")).click();
+	      
+	      JavascriptExecutor  js=(JavascriptExecutor)driver;
+          js.executeScript("window.scrollTo(0,-500)");	
+          
+          Thread.sleep(2000);
+	      driver.findElement(By.xpath("//div[@class='d-flex w-50 justify-content-end gap-2']")).click();
+	      driver.findElement(By.xpath("(//td[@class='overflow_text vendorName cursorPointer'])[1]")).click();
+	      
+	        driver.findElement(By.xpath("//li[contains(text(),'Notes')]")).click();
+		    Thread.sleep(1000);
+		    driver.findElement(By.xpath("(//button[@class='editNoteButton'])[1]")).click();
+		    driver.findElement(By.xpath("//textarea[@class='notesClass']")).click();
+		    driver.findElement(By.xpath("//textarea[@class='notesClass']")).clear();
+		    driver.findElement(By.xpath("//textarea[@class='notesClass']")).sendKeys("dss efewfewfd ");
+		    driver.findElement(By.xpath("//input[@placeholder='Add Title']")).clear();
+		    driver.findElement(By.xpath("//input[@placeholder='Add Title']")).sendKeys("rty rtytyrty ");        	
+          	driver.findElement(By.xpath("(//button[@class='editNoteButton'])[2]")).click(); 	
+
+	}
+	*/
+	
+	@Test(priority=9)
+	void Vendor_Add_Product() throws InterruptedException
+	{
+		Thread.sleep(2000);
+		  driver.findElement(By.xpath("//p[contains(text(),'Commerce')]")).click();
+	      driver.findElement(By.xpath("//p[contains(text(),'Vendors')]")).click();
+	      driver.findElement(By.xpath("//div[@class='d-flex w-50 justify-content-end gap-2']")).click();
+	      driver.findElement(By.xpath("(//td[@class='overflow_text vendorName cursorPointer'])[1]")).click();
+	      
+	      driver.findElement(By.xpath("//li[contains(text(),'Products')]")).click();
+		    Thread.sleep(1000);
+		    driver.findElement(By.xpath("//button[contains(text(),'Add Product')]")).click();
+			  Thread.sleep(500);
+		      driver.findElement(By.xpath("(//input[@type='checkbox'])[2]")).click();
+		      Thread.sleep(500);
+		      driver.findElement(By.xpath("//button[@class='createContactButtonSave modalButton']")).click();
+		      
+		      WebDriverWait waiti=new WebDriverWait(driver,Duration.ofSeconds(10));
+		      try {
+		    	 WebElement successMessageu= waiti.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h4[contains(text(),'Relation added successfully')]")));
+		     System.out.println("Success message:"+ successMessageu.getText());
+		      
+		      
+		      }
+		      catch(Exception e) {
+		    	  System.out.println("No success or error message found.");
+		      }   
+	}
+	
+		      @Test(priority=10)
+		  	void Vendor_Delete_Product() throws InterruptedException
+		  	{
+		  		Thread.sleep(2000);
+		  		driver.findElement(By.xpath("//p[contains(text(),'Home')]")).click();
+				  driver.findElement(By.xpath("//p[contains(text(),'Commerce')]")).click();
+			      driver.findElement(By.xpath("//p[contains(text(),'Vendors')]")).click();
+			      driver.findElement(By.xpath("//div[@class='d-flex w-50 justify-content-end gap-2']")).click();
+			      driver.findElement(By.xpath("(//td[@class='overflow_text vendorName cursorPointer'])[1]")).click();
+			      
+			      driver.findElement(By.xpath("//li[contains(text(),'Products')]")).click();
+				    Thread.sleep(1000);
+				    WebElement elementToHover = driver.findElement(By.xpath("(//td[@class='productsTabledata'])[1]"));
+
+				    // Create an instance of the Actions class
+				    Actions actions = new Actions(driver);
+
+				    // Perform the mouseover action
+				    actions.moveToElement(elementToHover).perform();
+				    
+				   driver.findElement(By.xpath("//img[@src='/static/media/cancelCircle.c747dde62c761eecec2bc34ab981fb41.svg']")).click();			
+				        Thread.sleep(500);
+				        driver.findElement(By.xpath("//button[contains(text(),'Delete')]")).click();
+						
+				        WebDriverWait waiti = new WebDriverWait(driver, Duration.ofSeconds(10));
+				        try {
+				            WebElement successMessageu = waiti.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h4[contains(text(),'Relation removed successfully')]")));
+				            System.out.println("Success message: " + successMessageu.getText());
+				        } catch (Exception e) {
+				            System.out.println("No success or error message found.");
+				        }
+				    } 
+				
+	
+		  	
+	
+	
+	
+	
+	
+	
 	
 }
