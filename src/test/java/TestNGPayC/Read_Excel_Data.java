@@ -8,34 +8,33 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class Excel_Data {
+public class Read_Excel_Data {
 
 	public static void main(String[] args) throws IOException
 	{
-		FileInputStream file=new FileInputStream(System.getProperty("user.dir")+"\\Testdata\\Calls.xlsx");
+	FileInputStream file=new FileInputStream(System.getProperty("user.dir")+"\\Testdata\\Calls.xlsx");
 		XSSFWorkbook workbook=new XSSFWorkbook(file);
-		
 		XSSFSheet sheet=workbook.getSheet("calls");
-		int totalRows=sheet.getLastRowNum();
-		int totalCells=sheet.getRow(1).getLastCellNum();
-		System.err.println("number of rows=" + totalRows);
-		System.err.println("number of cells=" + totalCells);
 		
-		for(int r=0;r<=totalRows;r++)
+		int totalrows=sheet.getLastRowNum();
+		int totalcells=sheet.getRow(0).getLastCellNum();
+		System.out.println("No.of Rows= "+totalrows );
+		System.out.println("No.of Cells= "+totalcells );
+		
+		for(int r=0;r<=totalrows;r++) 
 		{
-			XSSFRow currentRow=sheet.getRow(r);
-			
-			
-			for(int c=0;c<totalCells;c++) 
+			XSSFRow rows=sheet.getRow(r);
+			for(int c=0; c<totalcells; c++)
 			{
-				XSSFCell cell=currentRow.getCell(c);
-			System.out.print(cell.toString()+"\t"); 
+			XSSFCell cell=rows.getCell(c);
+			System.out.print(cell.toString()+"\t");
+				
 			}
 			System.out.println();
 		}
-		
+
 		workbook.close();
 		file.close();
-	}
-
+		
+}
 }
