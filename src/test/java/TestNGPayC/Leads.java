@@ -9,6 +9,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
@@ -56,7 +57,31 @@ public class Leads
 	        Random random = new Random();
 	        return MESSAGE_ELEMENTS[random.nextInt(MESSAGE_ELEMENTS.length)];
 	  }
-	    
+	   public static String generateRandomCountry() {
+		   String[] MESSAGE_ELEMENTS= {"New India","Sri Lanka","Japan","Singapore"};
+		   Random random=new Random();
+		   return MESSAGE_ELEMENTS[random.nextInt(MESSAGE_ELEMENTS.length)];
+	   }
+	  
+	   public static String generateRandomCity() {
+		   String[] MESSAGE_ELEMENTS= {"Huvina  Hadagali", "Bangalore", "Hyderabad", "Chennai"};
+		   Random random=new Random();
+		   return MESSAGE_ELEMENTS[random.nextInt(MESSAGE_ELEMENTS.length)];
+	   }
+	   
+	   public static String generateRandomFax() {
+		   String[] MESSAGE_ELEMENTS= {"886775588998","75647383947568","756484984477","453267889445"};
+		   Random random=new Random();
+		   return MESSAGE_ELEMENTS[random.nextInt(MESSAGE_ELEMENTS.length)];
+	   }
+       public static String generateRandomTeam() {
+       	
+       	String[] Team= {"Backend","Frontend","Data Base","Testing"};
+       	Random random=new Random();
+       	return Team[random.nextInt(Team.length)];
+       }
+       	
+	  
 	    
 		WebDriver driver;
 		
@@ -458,7 +483,7 @@ public class Leads
 		      // Print the count
 		      System.out.println("Total number of Recently Modified Leads: " + recordCount);
 		}
-*/
+
 		
 		@Test(priority=15)
 		void Leads_Mass_Delete() 
@@ -617,22 +642,394 @@ public class Leads
            Thread.sleep(1000);
            driver.findElement(By.xpath("//div[@class=' css-qav5hl-singleValue']")).click();
            Thread.sleep(1000);
-           driver.findElement(By.xpath("//div[contains(text(),'Junk Lead')]")).click();
-
-            
-            
-            
+           driver.findElement(By.xpath("//div[contains(text(),'Junk Lead')]")).click();             
 		}
+		
+		@Test(priority=18)
+		void Leads_Mass_Update() throws InterruptedException
+		{
+			  //For Annual revenue field update
+		      driver.findElement(By.xpath("//p[contains(text(),'Home')]")).click();
+			  driver.findElement(By.xpath("//p[contains(text(),'CRM')]")).click();
+		      driver.findElement(By.xpath("//p[contains(text(),'Leads')]")).click();
 			
+		      driver.findElement(By.xpath("//div[@class='d-flex w-50 justify-content-end gap-2']")).click();
+		      driver.findElement(By.xpath("(//input[@id='vehicle1'])[1]")).click();
+		      driver.findElement(By.xpath("(//input[@id='vehicle1'])[2]")).click();
+		      driver.findElement(By.xpath("(//input[@id='vehicle1'])[3]")).click();
+		      driver.findElement(By.xpath("(//input[@id='vehicle1'])[4]")).click();
+		      
+		      driver.findElement(By.xpath("//div[@class=' css-1qpx96c-indicatorContainer']")).click();
+	    	  driver.findElement(By.xpath("//div[contains(text(),'Mass Update')]")).click();
+	    	  driver.findElement(By.xpath("//input[@id='massValue']")).sendKeys("101");
+	    	  driver.findElement(By.xpath("//button[@class='createContactButtonSave']")).click();
 			
-		
-			
-			
-		
-		
-		
-		
-		
-		
+              Thread.sleep(2000);
+              
+            //For Company field update
+		      driver.findElement(By.xpath("(//input[@id='vehicle1'])[1]")).click();
+		      driver.findElement(By.xpath("(//input[@id='vehicle1'])[2]")).click();
+		      driver.findElement(By.xpath("(//input[@id='vehicle1'])[3]")).click();
+		      driver.findElement(By.xpath("(//input[@id='vehicle1'])[4]")).click();
+		    
+		      driver.findElement(By.xpath("//div[@class=' css-1qpx96c-indicatorContainer']")).click();
+	    	  driver.findElement(By.xpath("//div[contains(text(),'Mass Update')]")).click();
+	    	  
+	    	  driver.findElement(By.xpath("//div[@class='cursorPointer d-flex justify-content-between w-100 my-1 p-1 border-0']")).click();
+	    	  driver.findElement(By.xpath("(//span[contains(text(),'Company')])[2]")).click();
+	    	  WebElement compan=driver.findElement(By.xpath("//input[@id='massValue']"));
+	    	  compan.sendKeys(generateRandomCompanyName());
+	          Thread.sleep(1000);
+	    	  driver.findElement(By.xpath("//button[@class='createContactButtonSave']")).click();
+	    	  
+	    	  //For Country field update
+	    	  Thread.sleep(2000);
+		      driver.findElement(By.xpath("(//input[@id='vehicle1'])[1]")).click();
+		      driver.findElement(By.xpath("(//input[@id='vehicle1'])[2]")).click();
+		      
+		      driver.findElement(By.xpath("//div[@class=' css-1qpx96c-indicatorContainer']")).click();
+	    	  driver.findElement(By.xpath("//div[contains(text(),'Mass Update')]")).click();
+	    	  
+	    	  driver.findElement(By.xpath("//div[@class='cursorPointer d-flex justify-content-between w-100 my-1 p-1 border-0']")).click();
+	    	  driver.findElement(By.xpath("//span[contains(text(),'Country')]")).click();
+	    	  WebElement countr=driver.findElement(By.xpath("//input[@id='massValue']"));
+	    	  countr.sendKeys(generateRandomCountry());
+	          Thread.sleep(1000);
+	    	  driver.findElement(By.xpath("//button[@class='createContactButtonSave']")).click();
+	    	  
+	    	  //For City field update
+	    	  Thread.sleep(2000);
+		      driver.findElement(By.xpath("(//input[@id='vehicle1'])[1]")).click();
+		      driver.findElement(By.xpath("(//input[@id='vehicle1'])[2]")).click();
+		      
+		      driver.findElement(By.xpath("//div[@class=' css-1qpx96c-indicatorContainer']")).click();
+	    	  driver.findElement(By.xpath("//div[contains(text(),'Mass Update')]")).click();
+	    	  
+	    	  driver.findElement(By.xpath("//div[@class='cursorPointer d-flex justify-content-between w-100 my-1 p-1 border-0']")).click();
+	    	  driver.findElement(By.xpath("//span[contains(text(),'City')]")).click();
+	    	  WebElement cit=driver.findElement(By.xpath("//input[@id='massValue']"));
+	    	  cit.sendKeys(generateRandomCity());
+	          Thread.sleep(1000);
+	    	  driver.findElement(By.xpath("//button[@class='createContactButtonSave']")).click();
+	    	  
+	    	//For Email field update
+	    	  Thread.sleep(2000);
+		      driver.findElement(By.xpath("(//input[@id='vehicle1'])[1]")).click();
+		      driver.findElement(By.xpath("(//input[@id='vehicle1'])[2]")).click();
+		      
+		      driver.findElement(By.xpath("//div[@class=' css-1qpx96c-indicatorContainer']")).click();
+	    	  driver.findElement(By.xpath("//div[contains(text(),'Mass Update')]")).click();
+	    	  
+	    	  driver.findElement(By.xpath("//div[@class='cursorPointer d-flex justify-content-between w-100 my-1 p-1 border-0']")).click();
+	    	  driver.findElement(By.xpath("(//span[contains(text(),'Email')])[2]")).click();
+	    	  WebElement emai=driver.findElement(By.xpath("//input[@id='massValue']"));
+	    	  emai.sendKeys(generateRandommail()+"@mailinator.com");
+	          Thread.sleep(1000);
+	    	  driver.findElement(By.xpath("//button[@class='createContactButtonSave']")).click();
+	    	  
+	    	//For Fax field update
+	    	  Thread.sleep(2000);
+		      driver.findElement(By.xpath("(//input[@id='vehicle1'])[1]")).click();
+		      driver.findElement(By.xpath("(//input[@id='vehicle1'])[2]")).click();
+		      
+		      driver.findElement(By.xpath("//div[@class=' css-1qpx96c-indicatorContainer']")).click();
+	    	  driver.findElement(By.xpath("//div[contains(text(),'Mass Update')]")).click();
+	    	  
+	    	  driver.findElement(By.xpath("//div[@class='cursorPointer d-flex justify-content-between w-100 my-1 p-1 border-0']")).click();
+	    	  driver.findElement(By.xpath("//span[contains(text(),'Fax')]")).click();
+	    	  WebElement Fax=driver.findElement(By.xpath("//input[@id='massValue']"));
+	    	  Fax.sendKeys(generateRandomFax());
+	          Thread.sleep(1000);
+	    	  driver.findElement(By.xpath("//button[@class='createContactButtonSave']")).click();
+	    	  
+	    	//For Industry field update
+	    	  Thread.sleep(2000);
+		      driver.findElement(By.xpath("(//input[@id='vehicle1'])[1]")).click();
+		      driver.findElement(By.xpath("(//input[@id='vehicle1'])[2]")).click();
+		      
+		      driver.findElement(By.xpath("//div[@class=' css-1qpx96c-indicatorContainer']")).click();
+	    	  driver.findElement(By.xpath("//div[contains(text(),'Mass Update')]")).click();
+	    	  
+	    	  driver.findElement(By.xpath("//div[@class='cursorPointer d-flex justify-content-between w-100 my-1 p-1 border-0']")).click();
+	    	  driver.findElement(By.xpath("//span[contains(text(),'Industry')]")).click();
+	    	  
+	    	  driver.findElement(By.xpath("//div[@class=' css-16rszb6-control']")).click();
+	    	  driver.findElement(By.xpath("//div[contains(text(),'Data/Telecom OEM')]")).click();
+	          Thread.sleep(500);
+	          driver.findElement(By.xpath("//button[@class='createContactButtonSave']")).click();
+	    	  
+	        //For Job title field update
+	    	  Thread.sleep(2000);
+		      driver.findElement(By.xpath("(//input[@id='vehicle1'])[1]")).click();
+		      driver.findElement(By.xpath("(//input[@id='vehicle1'])[2]")).click();
+		      
+		      driver.findElement(By.xpath("//div[@class=' css-1qpx96c-indicatorContainer']")).click();
+	    	  driver.findElement(By.xpath("//div[contains(text(),'Mass Update')]")).click();
+	    	  
+	    	  driver.findElement(By.xpath("//div[@class='cursorPointer d-flex justify-content-between w-100 my-1 p-1 border-0']")).click();
+	    	  driver.findElement(By.xpath("//span[contains(text(),'Job Title')]")).click();
+	    	  WebElement Titl=driver.findElement(By.xpath("//input[@id='massValue']"));
+	    	  Titl.sendKeys(generateRandomTeam());
 
+	          Thread.sleep(500);
+	          driver.findElement(By.xpath("//button[@class='createContactButtonSave']")).click();
+	    	  
+	          //For Lead source field update
+	    	  Thread.sleep(2000);
+		      driver.findElement(By.xpath("(//input[@id='vehicle1'])[1]")).click();
+		      driver.findElement(By.xpath("(//input[@id='vehicle1'])[2]")).click();
+		    
+		      driver.findElement(By.xpath("//div[@class=' css-1qpx96c-indicatorContainer']")).click();
+	    	  driver.findElement(By.xpath("//div[contains(text(),'Mass Update')]")).click();
+	    	  
+	    	  driver.findElement(By.xpath("//div[@class='cursorPointer d-flex justify-content-between w-100 my-1 p-1 border-0']")).click();
+	          Thread.sleep(500);
+
+	    	  driver.findElement(By.xpath("//span[contains(text(),'Lead Source')]")).click();
+	          Thread.sleep(500);
+	    	  driver.findElement(By.xpath("//div[@class=' css-16rszb6-control']")).click();
+	    	  driver.findElement(By.xpath("//div[contains(text(),'Cold Call')]")).click();
+	          Thread.sleep(500);
+	          driver.findElement(By.xpath("//button[@class='createContactButtonSave']")).click();
+	          
+	          
+	          //For Lead status field update
+	    	  Thread.sleep(2000);
+		      driver.findElement(By.xpath("(//input[@id='vehicle1'])[1]")).click();
+		      driver.findElement(By.xpath("(//input[@id='vehicle1'])[2]")).click();
+		      
+		      driver.findElement(By.xpath("//div[@class=' css-1qpx96c-indicatorContainer']")).click();
+	    	  driver.findElement(By.xpath("//div[contains(text(),'Mass Update')]")).click();
+	    	  
+	    	  driver.findElement(By.xpath("//div[@class='cursorPointer d-flex justify-content-between w-100 my-1 p-1 border-0']")).click();
+	          Thread.sleep(500);
+
+	    	  driver.findElement(By.xpath("//span[contains(text(),'Lead Status')]")).click();
+	          Thread.sleep(500);
+
+	    	  driver.findElement(By.xpath("//div[@class=' css-16rszb6-control']")).click();
+	    	  driver.findElement(By.xpath("//div[contains(text(),'Junk Lead')]")).click();
+	          Thread.sleep(500);
+	          driver.findElement(By.xpath("//button[@class='createContactButtonSave']")).click();
+	          
+	          
+	        //For Mobile field update
+	    	  Thread.sleep(2000);
+		      driver.findElement(By.xpath("(//input[@id='vehicle1'])[1]")).click();
+		      driver.findElement(By.xpath("(//input[@id='vehicle1'])[2]")).click();
+		      
+		      driver.findElement(By.xpath("//div[@class=' css-1qpx96c-indicatorContainer']")).click();
+	    	  driver.findElement(By.xpath("//div[contains(text(),'Mass Update')]")).click();
+	    	  
+	    	  driver.findElement(By.xpath("//div[@class='cursorPointer d-flex justify-content-between w-100 my-1 p-1 border-0']")).click();
+	          Thread.sleep(500);
+
+	          driver.findElement(By.xpath("//span[contains(text(),'Mobile')]")).click();
+	    	 
+	    	  WebElement Mobi=driver.findElement(By.xpath("//input[@id='massValue']"));
+	    	  Mobi.sendKeys(generatePhoneno());
+	          Thread.sleep(1000);
+	    	  driver.findElement(By.xpath("//button[@class='createContactButtonSave']")).click();
+	     
+	        //For Phone number field update
+	    	  Thread.sleep(2000);
+		      driver.findElement(By.xpath("(//input[@id='vehicle1'])[1]")).click();
+		      driver.findElement(By.xpath("(//input[@id='vehicle1'])[2]")).click();		      
+		      driver.findElement(By.xpath("//div[@class=' css-1qpx96c-indicatorContainer']")).click();
+	    	  driver.findElement(By.xpath("//div[contains(text(),'Mass Update')]")).click();	    	  
+	    	  driver.findElement(By.xpath("//div[@class='cursorPointer d-flex justify-content-between w-100 my-1 p-1 border-0']")).click();
+	          Thread.sleep(1000);
+	    	  driver.findElement(By.xpath("(//span[contains(text(),'Phone Number')])[2]")).click();  	 
+		      WebElement Phon=driver.findElement(By.xpath("//input[@id='massValue']"));
+		      Phon.sendKeys(generatePhoneno());
+		      Thread.sleep(1000);
+		      driver.findElement(By.xpath("//button[@class='createContactButtonSave']")).click();	          	          
+		}
+		
+		*/
+		
+		@Test(priority=19)
+		void Leads_Add_Product() throws InterruptedException
+		{
+			  //For Annual revenue field update
+		      driver.findElement(By.xpath("//p[contains(text(),'Home')]")).click();
+			  driver.findElement(By.xpath("//p[contains(text(),'CRM')]")).click();
+		      driver.findElement(By.xpath("//p[contains(text(),'Leads')]")).click();
+			
+		      driver.findElement(By.xpath("//div[@class='d-flex w-50 justify-content-end gap-2']")).click();
+		      driver.findElement(By.xpath("(//td[@class='overflow_text leadName cursorPointer'])[1]")).click();
+		      driver.findElement(By.xpath("//li[contains(text(),'Products')]")).click();
+	          Thread.sleep(1000);
+		      driver.findElement(By.xpath("//button[contains(text(),'Add Product')]")).click();
+			  Thread.sleep(500);
+		      driver.findElement(By.xpath("(//input[@type='checkbox'])[2]")).click();
+		      Thread.sleep(500);
+		      driver.findElement(By.xpath("//button[@class='createContactButtonSave modalButton']")).click();
+		      
+		      WebDriverWait waiti=new WebDriverWait(driver,Duration.ofSeconds(10));
+		      try {
+		    	 WebElement successMessageu= waiti.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h4[contains(text(),'Relation added successfully')]")));
+		     System.out.println("Success message:"+ successMessageu.getText());
+		      
+		      
+		      }
+		      catch(Exception e) {
+		    	  System.out.println("No success or error message found.");
+		      }   
+	
+		}
+		
+		@Test(priority=20)
+		void Leads_Delete_Product() throws InterruptedException {
+		    // For Annual revenue field update
+		    driver.findElement(By.xpath("//p[contains(text(),'Home')]")).click();
+		    driver.findElement(By.xpath("//p[contains(text(),'CRM')]")).click();
+		    driver.findElement(By.xpath("//p[contains(text(),'Leads')]")).click();
+			
+		    driver.findElement(By.xpath("//div[@class='d-flex w-50 justify-content-end gap-2']")).click();
+		    driver.findElement(By.xpath("(//td[@class='overflow_text leadName cursorPointer'])[1]")).click();
+		    driver.findElement(By.xpath("//li[contains(text(),'Products')]")).click();
+		    Thread.sleep(1000);
+
+		    WebElement elementToHover = driver.findElement(By.xpath("(//td[@class='productsTabledata'])[1]"));
+
+		    // Create an instance of the Actions class
+		    Actions actions = new Actions(driver);
+
+		    // Perform the mouseover action
+		    actions.moveToElement(elementToHover).perform();
+		    
+		   driver.findElement(By.xpath("//img[@src='/static/media/cancelCircle.c747dde62c761eecec2bc34ab981fb41.svg']")).click();			
+		        Thread.sleep(500);
+		        driver.findElement(By.xpath("//button[contains(text(),'Delete')]")).click();
+				
+		        WebDriverWait waiti = new WebDriverWait(driver, Duration.ofSeconds(10));
+		        try {
+		            WebElement successMessageu = waiti.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h4[contains(text(),'Relation removed successfully')]")));
+		            System.out.println("Success message: " + successMessageu.getText());
+		        } catch (Exception e) {
+		            System.out.println("No success or error message found.");
+		        }
+		    } 
+		
+		
+		
+		@Test(priority=21)
+		void Leads_Add_Campaign() throws InterruptedException
+		{
+			
+		      driver.findElement(By.xpath("//p[contains(text(),'Home')]")).click();
+			  driver.findElement(By.xpath("//p[contains(text(),'CRM')]")).click();
+		      driver.findElement(By.xpath("//p[contains(text(),'Leads')]")).click();
+	          Thread.sleep(500);
+	          driver.findElement(By.xpath("(//div[@class=' css-qav5hl-singleValue'])[2]")).click();
+		      Thread.sleep(2000);
+		      driver.findElement(By.xpath("(//td[@class='overflow_text leadName cursorPointer'])[1]")).click();
+		      driver.findElement(By.xpath("//li[contains(text(),'Campaign')]")).click();
+	          Thread.sleep(1000);
+		      driver.findElement(By.xpath("//button[contains(text(),'Add Campaign')]")).click();
+			  Thread.sleep(500);
+		      driver.findElement(By.xpath("(//input[@type='checkbox'])[2]")).click();
+		      Thread.sleep(500);
+		      driver.findElement(By.xpath("//button[@class='createContactButtonSave modalButton']")).click();
+		      
+		      WebDriverWait waiti=new WebDriverWait(driver,Duration.ofSeconds(10));
+		      try {
+		    	 WebElement successMessageu= waiti.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h4[contains(text(),'Relation added successfully')]")));
+		     System.out.println("Success message:"+ successMessageu.getText());
+		      
+		      
+		      }
+		      catch(Exception e) {
+		    	  System.out.println("No success or error message found.");
+		      }   
+	
+		}
+		
+		
+		@Test(priority=22)
+		void Leads_Delete_Campaign() throws InterruptedException {
+		    // For Annual revenue field update
+		    driver.findElement(By.xpath("//p[contains(text(),'Home')]")).click();
+		    driver.findElement(By.xpath("//p[contains(text(),'CRM')]")).click();
+		    driver.findElement(By.xpath("//p[contains(text(),'Leads')]")).click();
+		    Thread.sleep(2000);
+			
+		    driver.findElement(By.xpath("//div[@class='d-flex w-50 justify-content-end gap-2']")).click();
+		    driver.findElement(By.xpath("(//td[@class='overflow_text leadName cursorPointer'])[1]")).click();
+		    driver.findElement(By.xpath("//li[contains(text(),'Products')]")).click();
+		    Thread.sleep(1000);
+
+		    WebElement elementToHover = driver.findElement(By.xpath("(//td[@class='productsTabledata'])[9]"));
+
+		    // Create an instance of the Actions class
+		    Actions actions = new Actions(driver);
+
+		    // Perform the mouseover action
+		    actions.moveToElement(elementToHover).perform();
+		    
+		   driver.findElement(By.xpath("//img[@src='/static/media/cancelCircle.c747dde62c761eecec2bc34ab981fb41.svg']")).click();			
+		        Thread.sleep(500);
+		        driver.findElement(By.xpath("//button[contains(text(),'Delete')]")).click();
+				
+		        WebDriverWait waiti = new WebDriverWait(driver, Duration.ofSeconds(10));
+		        try {
+		            WebElement successMessageu = waiti.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h4[contains(text(),'Relation removed successfully')]")));
+		            System.out.println("Success message: " + successMessageu.getText());
+		        } catch (Exception e) {
+		            System.out.println("No success or error message found.");
+		        }
+		    } 
+		
+		
+		@Test(priority=23)
+		void Leads_Add_Note() throws InterruptedException {
+		    // For Annual revenue field update
+		    driver.findElement(By.xpath("//p[contains(text(),'Home')]")).click();
+		    driver.findElement(By.xpath("//p[contains(text(),'CRM')]")).click();
+		    driver.findElement(By.xpath("//p[contains(text(),'Leads')]")).click();
+		    Thread.sleep(2000);
+			
+		    driver.findElement(By.xpath("//div[@class='d-flex w-50 justify-content-end gap-2']")).click();
+		    driver.findElement(By.xpath("(//td[@class='overflow_text leadName cursorPointer'])[1]")).click();
+		    driver.findElement(By.xpath("//li[contains(text(),'Notes')]")).click();
+		    Thread.sleep(1000);
+
+		    driver.findElement(By.xpath("//textarea[@class='notesClass']")).click();
+		    driver.findElement(By.xpath("//textarea[@class='notesClass']")).sendKeys("dss efewfewfd ");
+		    
+		    driver.findElement(By.xpath("//input[@placeholder='Add Title']")).sendKeys("rty rtytyrty ");
+		    
+			
+         	String filepath= "C:\\Users\\Lokesh R B\\Desktop\\New Docx\\sa1.jpg";
+         	WebElement fileinput=driver.findElement(By.xpath("(//input[@type='file'])"));
+         	fileinput.sendKeys(filepath);         	
+          	driver.findElement(By.xpath("//button[@class='editNoteButton']")).click(); 
+		    
+		}
+	
+		
+		@Test(priority=24)
+		void Leads_Edit_Note() throws InterruptedException {
+		    // For Annual revenue field update
+		    driver.findElement(By.xpath("//p[contains(text(),'Home')]")).click();
+		    driver.findElement(By.xpath("//p[contains(text(),'CRM')]")).click();
+		    driver.findElement(By.xpath("//p[contains(text(),'Leads')]")).click();
+		    Thread.sleep(2000);
+			
+		    driver.findElement(By.xpath("//div[@class='d-flex w-50 justify-content-end gap-2']")).click();
+		    driver.findElement(By.xpath("(//td[@class='overflow_text leadName cursorPointer'])[1]")).click();
+		    driver.findElement(By.xpath("//li[contains(text(),'Notes')]")).click();
+		    Thread.sleep(1000);
+		    driver.findElement(By.xpath("(//button[@class='editNoteButton'])[1]")).click();
+		    driver.findElement(By.xpath("//textarea[@class='notesClass']")).click();
+		    driver.findElement(By.xpath("//textarea[@class='notesClass']")).clear();
+		    driver.findElement(By.xpath("//textarea[@class='notesClass']")).sendKeys("dss efewfewfd ");
+		    driver.findElement(By.xpath("//input[@placeholder='Add Title']")).clear();
+		    driver.findElement(By.xpath("//input[@placeholder='Add Title']")).sendKeys("rty rtytyrty ");        	
+          	driver.findElement(By.xpath("(//button[@class='editNoteButton'])[2]")).click(); 		    
+		}
+		
+		
+		
 }
