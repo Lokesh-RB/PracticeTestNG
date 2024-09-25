@@ -1077,6 +1077,5 @@ public class Vendors
   		}catch(Exception e) {
   			System.out.println("No success or error message found.");
   		}      
-	 
 	  	}  	
 }
