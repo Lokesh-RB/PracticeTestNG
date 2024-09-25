@@ -5,7 +5,7 @@
     <classes>
       <class name="TestNGPayC.Leads">
         <methods>
-          <include name="Leads_Individual_Edit"/>
+          <include name="LeadsNewTaskOpenActivities"/>
         </methods>
       </class> <!-- TestNGPayC.Leads -->
     </classes>

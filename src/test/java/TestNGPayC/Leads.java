@@ -1032,9 +1032,10 @@ public class Leads
 		}
 		*/
 		
+        
 
-		@Test(priority=25)
-		
+		 @Test(priority=25)
+		 
 		 void LeadsNewTaskOpenActivities() throws InterruptedException {
 		    // For Annual revenue field update
 		    driver.findElement(By.xpath("//p[contains(text(),'Home')]")).click();
@@ -1070,16 +1071,13 @@ public class Leads
 		    Thread.sleep(500);
 		
 		    WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(10));
-
     		try {
     			WebElement successMessage=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h4[contains(text(),'Task Created Succesfully')]")));
     			// If success message is found, print it
     			System.out.println("Success message: " + successMessage.getText());
     		}catch(Exception e) {
     			System.out.println("Error message found.");
-    		}
-		
-		
+    		}				
 		
 		}
 }
