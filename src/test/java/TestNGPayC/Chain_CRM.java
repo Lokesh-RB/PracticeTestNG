@@ -30,7 +30,7 @@ public class Chain_CRM {
 
 	// Static method to generate a random last name
 	public static String generateRandomLastName() {
-		String[] MESSAGE_ELEMENTS = {"Vinay", "Kumar", "Ravi", "Gagan", "Mohit", "Sharan", "Kiran", "Abhishek", "Raayan", "Olivia"};
+		String[] MESSAGE_ELEMENTS = {"Vinay", "KumarG", "Ravi", "Gagan", "Mohit", "Sharan", "Kiran", "Abhishek", "Raayan", "Olivia"};
 		Random random = new Random();
 		return MESSAGE_ELEMENTS[random.nextInt(MESSAGE_ELEMENTS.length)];
 	}
