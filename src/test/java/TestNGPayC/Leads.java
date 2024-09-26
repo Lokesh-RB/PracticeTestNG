@@ -1030,9 +1030,6 @@ public class Leads
 		    driver.findElement(By.xpath("//input[@placeholder='Add Title']")).sendKeys("rty rtytyrty ");        	
           	driver.findElement(By.xpath("(//button[@class='editNoteButton'])[2]")).click(); 		    
 		}
-		*/
-		
-        
 
 		 @Test(priority=25)
 		 
@@ -1077,7 +1074,83 @@ public class Leads
     			System.out.println("Success message: " + successMessage.getText());
     		}catch(Exception e) {
     			System.out.println("Error message found.");
-    		}				
-		
+    		}						
 		}
+		 	*/
+		 
+		@Test(priority=26)
+		 
+		 void LeadsNewTaskOpenActivities() throws InterruptedException {
+		    // For Annual revenue field update
+		    driver.findElement(By.xpath("//p[contains(text(),'Home')]")).click();
+		    driver.findElement(By.xpath("//p[contains(text(),'CRM')]")).click();
+		    driver.findElement(By.xpath("//p[contains(text(),'Leads')]")).click();
+		    Thread.sleep(2000);
+			
+		    driver.findElement(By.xpath("//div[@class='d-flex w-50 justify-content-end gap-2']")).click();
+		    driver.findElement(By.xpath("(//td[@class='overflow_text leadName cursorPointer'])[1]")).click();
+		
+		    driver.findElement(By.xpath("//li[.='Open Activities']")).click();
+		    Thread.sleep(500);		
+		    driver.findElement(By.xpath("//button[.='Add New']")).click();
+		    driver.findElement(By.xpath("//li[.='Call']")).click();		    		 
+		    driver.findElement(By.xpath("//li[.='Schedule a Call']")).click();
+		    Thread.sleep(500);
+		    driver.findElement(By.xpath("(//div[@class='cursorPointer'])[2]")).click();
+		    
+		    driver.findElement(By.xpath("//input[@name='subject']")).sendKeys(generateRandomLastName());
+
+		    
+		    driver.findElement(By.xpath("//span[.='01']")).click();
+		    driver.findElement(By.xpath("//div[.='AM']")).click();
+		 
+		    driver.findElement(By.xpath("//button[.='Schedule']")).click();
+		    driver.findElement(By.xpath("//button[.='Create']")).click();
+
+		    WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(10));
+
+	  		try {
+	  			WebElement successMessage=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h4[contains(text(),'Call Created Succesfully')]")));
+	  			// If success message is found, print it
+	  			System.out.println("Success message: " + successMessage.getText());
+	  			System.out.println("This testcase pass");
+	  		}catch(Exception e) {
+	  			System.out.println("Error message found.");
+	  			System.out.println("This testcase fails");
+	  		}
+	  		
+	  		driver.findElement(By.xpath("//span[.='Calls']")).click();	 
+	  			
+	  	List<WebElement> nameList=driver.findElements(By.xpath("//td[.='gagan']"));
+	  		
+	  		String expectedName="gagan";
+	  		boolean nameFound= false;
+	  		
+	  		for(WebElement nameElement:nameList)
+	  		if(nameElement.getText().equals(expectedName))
+	  		{
+	  		nameFound=true;	
+	  		}
+		
+	if(nameFound)
+	{
+		System.out.println("Name '" + expectedName + "' is displayed in the list.");
+    } else {
+        System.out.println("Name '" + expectedName + "' is not displayed in the list.");
+    }
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 }
