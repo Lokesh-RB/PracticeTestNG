@@ -12,6 +12,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 
@@ -85,6 +86,8 @@ public class Leads
 	    
 		WebDriver driver;
 		
+		
+		
 		@Test(priority=1)
 
 	    void open_app() 
@@ -102,10 +105,17 @@ public class Leads
 			 Boolean Next=driver.findElement(By.xpath("//button[@class='LoginNextBtn']")).isEnabled();
 		      System.out.println(Next);
 
-		      driver.findElement(By.xpath("//input[@type='text']")).sendKeys("lokeshrb@mailinator.com");
-		      driver.findElement(By.xpath("//button[@class='LoginNextBtn']")).click();
-		      driver.findElement(By.xpath("//input[@type='password']")).sendKeys("Loki@123");
-		      driver.findElement(By.xpath("//button[contains(text(),'Next')]")).click();
+		      Login1 lp=new Login1(driver);
+		      lp.setMailId("lokeshrb@mailinator.com");
+		      lp.clickContinue();
+		      lp.setPwd("Loki@123");
+		      lp.clickLogin();
+		      
+		      
+//		      driver.findElement(By.xpath("//input[@type='text']")).sendKeys("lokeshrb@mailinator.com");
+//		      driver.findElement(By.xpath("//button[@class='LoginNextBtn']")).click();
+//		      driver.findElement(By.xpath("//input[@type='password']")).sendKeys("Loki@123");
+//		      driver.findElement(By.xpath("//button[contains(text(),'Next')]")).click();
 		}
 		
 	/*	
@@ -1076,7 +1086,7 @@ public class Leads
     			System.out.println("Error message found.");
     		}						
 		}
-		 	*/
+		
 		 
 		@Test(priority=26)
 		 
@@ -1101,7 +1111,7 @@ public class Leads
 		    driver.findElement(By.xpath("//input[@name='subject']")).sendKeys(generateRandomLastName());
 
 		    
-		    driver.findElement(By.xpath("//span[.='01']")).click();
+		    driver.findElement(By.xpath("//span[.='02']")).click();
 		    driver.findElement(By.xpath("//div[.='AM']")).click();
 		 
 		    driver.findElement(By.xpath("//button[.='Schedule']")).click();
@@ -1139,18 +1149,91 @@ public class Leads
         System.out.println("Name '" + expectedName + "' is not displayed in the list.");
     }
 		}
+			 	
+		
+		@Test(priority=27)
+		 
+		 void LeadsNewTaskOpenActivities() throws InterruptedException {
+		    // For Annual revenue field update
+		    driver.findElement(By.xpath("//p[contains(text(),'Home')]")).click();
+		    driver.findElement(By.xpath("//p[contains(text(),'CRM')]")).click();
+		    driver.findElement(By.xpath("//p[contains(text(),'Leads')]")).click();
+		    Thread.sleep(2000);
+			
+		    driver.findElement(By.xpath("//div[@class='d-flex w-50 justify-content-end gap-2']")).click();
+		    driver.findElement(By.xpath("(//td[@class='overflow_text leadName cursorPointer'])[1]")).click();
+		
+		    driver.findElement(By.xpath("//li[.='Open Activities']")).click();
+		    Thread.sleep(500);		
+		    driver.findElement(By.xpath("//button[.='Add New']")).click();
+		    driver.findElement(By.xpath("//li[.='Call']")).click();		    		 
+		    driver.findElement(By.xpath("//li[.='Log a Call']")).click();
+		    Thread.sleep(500);
 		
 		
+		    driver.findElement(By.xpath("//input[@name='subject']")).sendKeys(generateRandomLastName());
+		    		
+		    driver.findElement(By.xpath("(//input[@type='text'])[32]")).sendKeys("2");
+		   
+		    driver.findElement(By.xpath("(//div[@class='cursorPointer'])[2]")).click();
+		    driver.findElement(By.xpath("//span[.='01']")).click();
+		    driver.findElement(By.xpath("//button[.='Save']")).click();
+		    
+		    WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(10));
+
+	  		try {
+	  			WebElement successMessage=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h4[contains(text(),'Call Created Succesfully')]")));
+	  			// If success message is found, print it
+	  			System.out.println("Success message: " + successMessage.getText());
+	  			System.out.println("This testcase pass");
+	  		}catch(Exception e) {
+	  			System.out.println("Error message found.");
+	  			System.out.println("This testcase fails");
+	  		}
+		  
+		}
+	*/	
 		
+		@Test(priority=28)
+		 
+		 void LeadsNewTaskOpenActivities() throws InterruptedException {
+		 
+		    driver.findElement(By.xpath("//p[contains(text(),'Home')]")).click();
+		    driver.findElement(By.xpath("//p[contains(text(),'CRM')]")).click();
+		    driver.findElement(By.xpath("//p[contains(text(),'Leads')]")).click();
+		    Thread.sleep(2000);
+			
+		    driver.findElement(By.xpath("//div[@class='d-flex w-50 justify-content-end gap-2']")).click();
+		    driver.findElement(By.xpath("(//td[@class='overflow_text leadName cursorPointer'])[1]")).click();
 		
+		    driver.findElement(By.xpath("//li[.='Open Activities']")).click();
+		    Thread.sleep(500);		
+		    driver.findElement(By.xpath("//button[.='Add New']")).click();
+		    driver.findElement(By.xpath("//li[.='Meeting']")).click();
+		    driver.findElement(By.xpath("(//input[@name='title'])[2]")).sendKeys(generateRandomLastName());
+		    driver.findElement(By.xpath("(//div[@class='cursorPointer'])[2]")).click();
+		    driver.findElement(By.xpath("//span[.='01']")).click();
+		    driver.findElement(By.xpath("(//div[@class='cursorPointer'])[5]")).click();
+		    driver.findElement(By.xpath("//span[.='02']")).click();
+		    
+		    		
+		    driver.findElement(By.xpath("//input[@name='location']")).sendKeys(generateRandomCity());		
+		    driver.findElement(By.xpath("//button[.='Save']")).click();		
+		    driver.findElement(By.xpath("//button[.='Create']")).click();		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		    WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(10));
+
+	  		try {
+	  			WebElement successMessage=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h4[contains(text(),'Meeting details added successfully')]")));
+	  			// If success message is found, print it
+	  			System.out.println("Success message: " + successMessage.getText());
+	  			System.out.println("This testcase pass");
+	  		}catch(Exception e) {
+	  			System.out.println("Error message found.");
+	  			System.out.println("This testcase fails");
+	  		}	
+		  	
+		    		
+		    		
+		}
 }
