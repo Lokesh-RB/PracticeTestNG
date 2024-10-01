@@ -118,7 +118,7 @@ public class Quotes_Module
 	  	      driver.findElement(By.xpath("//button[contains(text(),'Next')]")).click();      	
 	        }
 	  
-	      
+	      /*
 	        @Test(priority=3, dependsOnMethods= ("Login"))
 	        void Create_Quote() throws InterruptedException
 	        {
@@ -240,7 +240,7 @@ public class Quotes_Module
 		    		   System.out.println("No success or error message found.");
 		    	   }		          		    		
 	        }
-	   /*
+	  
 	      
 	        @Test(priority=4, dependsOnMethods= ("Create_Quote"))
 	        void Edit_Quote() throws InterruptedException
@@ -995,22 +995,10 @@ public class Quotes_Module
 	    		driver.findElement(By.xpath("(//button[contains(text(),'Save')])[2]")).click();
 	    		Thread.sleep(2000);
 	    		driver.findElement(By.xpath("//h4[contains(text(),'Sales order  details added Succesfully')]")).click();
-	    		Thread.sleep(1000);
-	    		
-	    		
-   		
-	    		
-//	    		WebDriverWait wait =new WebDriverWait(driver,Duration.ofSeconds(10));
-//	    		try {
-//	    		WebElement	successmessage=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h4[contains(text(),'Sales order  details added Succesfully')]")));
-//	    		//If success message display
-//	    			System.out.println("Success message:" + successmessage.getText());
-//	    		
-//	    		}catch(Exception e) {
-//	    			 System.out.println("No success or error message found.");
-//	    		}
+	    		Thread.sleep(1000);	 		
+
 	        }
-	       
+	     
 	        
 	        @Test(priority=16, dependsOnMethods= ("Login"))
 	        void Quote_Overview_page() throws InterruptedException
@@ -1052,6 +1040,56 @@ public class Quotes_Module
 	         	WebElement BSI=driver.findElement(By.xpath("//input[@name='billingStreetInfo']"));
                 BSI.sendKeys(generateRandomBillingStreet());
                      	
-	        }
-        	   */     
+	         }
+        	      
+	          */
+	        @Test(priority=17, dependsOnMethods= ("Login"))
+	        void QuoteAddQuotes() throws InterruptedException
+	        {
+	        
+	        	driver.findElement(By.xpath("//p[contains(text(),'Home')]")).click();
+	        	driver.findElement(By.xpath("//p[contains(text(),'Commerce')]")).click();
+	        	driver.findElement(By.xpath("//p[contains(text(),'Quotes')]")).click();
+	        	
+	         	driver.findElement(By.xpath("//div[@class='d-flex w-50 justify-content-end gap-2']")).click();	
+	         	driver.findElement(By.xpath("(//td[@class='overflow_text subject cursorPointer'])[1]")).click();	        	
+	         	driver.findElement(By.xpath("//button[contains(text(),'Edit')]")).click();
+	    		Thread.sleep(1000);
+	         	JavascriptExecutor js5=(JavascriptExecutor)driver;
+	         	js5.executeScript("window.scrollTo(0,1400)");
+	         	Thread.sleep(2000);
+
+	         	driver.findElement(By.xpath("(//input[@type='number'])[2]")).sendKeys("10");
+	         	driver.findElement(By.xpath("(//input[@type='number'])[2]")).sendKeys("5");
+
+	         	driver.findElement(By.xpath("(//span[@class='cursorPointer'])[2]")).click();
+	         	driver.findElement(By.xpath("//input[@name='percentage']")).sendKeys("23");
+	         	driver.findElement(By.xpath("//button[.='Done']")).click();
+
+	         	JavascriptExecutor js6=(JavascriptExecutor)driver;
+	         	js6.executeScript("window.scrollTo(0,-1400)");
+	         	Thread.sleep(1000);
+	        
+	         	driver.findElement(By.xpath("//button[.='Update']")).click();
+	        
+	         	WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(10));
+	   	    	   
+	   	    	   try {
+	   	    		   WebElement successMessage=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h4[contains(text(),'Shared successfully')]")));
+	   	    		   // If success message is found, print it
+	   			         System.out.println("Success message: " + successMessage.getText());
+	   	    	   }catch(Exception e)
+	   	    	   				{
+	   	    		   			System.out.println("No success or error message found.");
+	   	    	   			}    
+	        		}
+	        
+	        
+	        
+	        
+	        
+	        
+	        
+	        
+	        
 }	

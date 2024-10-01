@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 
 public class Leads 
@@ -81,7 +82,11 @@ public class Leads
        	Random random=new Random();
        	return Team[random.nextInt(Team.length)];
        }
-       	
+       public static String generateamount() {
+	        String[] MESSAGE_ELEMENTS = {"98", "54", "867", "756", "76", "548", "75", "98", "778", "987"};
+	        Random random = new Random();
+	        return MESSAGE_ELEMENTS[random.nextInt(MESSAGE_ELEMENTS.length)];
+	  }
 	  
 	    
 		WebDriver driver;
@@ -1192,11 +1197,11 @@ public class Leads
 	  		}
 		  
 		}
-	*/	
+		
 		
 		@Test(priority=28)
 		 
-		 void LeadsNewTaskOpenActivities() throws InterruptedException {
+		 void LeadsNewMeetingOpenActivities() throws InterruptedException {
 		 
 		    driver.findElement(By.xpath("//p[contains(text(),'Home')]")).click();
 		    driver.findElement(By.xpath("//p[contains(text(),'CRM')]")).click();
@@ -1231,9 +1236,182 @@ public class Leads
 	  		}catch(Exception e) {
 	  			System.out.println("Error message found.");
 	  			System.out.println("This testcase fails");
-	  		}	
-		  	
-		    		
-		    		
+	  		}			    		
 		}
+		
+
+		@Test(priority=29)
+		 
+		 void LeadNewMeetingOpenActivities() throws InterruptedException {
+		 
+		    driver.findElement(By.xpath("//p[contains(text(),'Home')]")).click();
+		    driver.findElement(By.xpath("//p[contains(text(),'CRM')]")).click();
+		    driver.findElement(By.xpath("//p[contains(text(),'Leads')]")).click();
+		    Thread.sleep(2000);
+			
+		    driver.findElement(By.xpath("//div[@class='d-flex w-50 justify-content-end gap-2']")).click();
+		    driver.findElement(By.xpath("(//td[@class='overflow_text leadName cursorPointer'])[1]")).click();
+		
+		    driver.findElement(By.xpath("//li[.='Open Activities']")).click();
+		    Thread.sleep(500);		
+		    driver.findElement(By.xpath("//button[.='Add New']")).click();
+		    driver.findElement(By.xpath("//li[.='Meeting']")).click();
+		    driver.findElement(By.xpath("(//input[@name='title'])[2]")).sendKeys(generateRandomLastName());
+		    driver.findElement(By.xpath("(//div[@class='cursorPointer'])[2]")).click();
+		    driver.findElement(By.xpath("//span[.='01']")).click();
+		    driver.findElement(By.xpath("(//div[@class='cursorPointer'])[5]")).click();
+		    driver.findElement(By.xpath("//span[.='02']")).click();
+		
+	        driver.findElement(By.xpath("//img[@src='/static/media/user-search-01.f7897915c904c53cc76c49ced9419915.svg']")).click();
+	        driver.findElement(By.xpath("//td[.='Prasanavarma123@mailinator.com']")).click();
+	        driver.findElement(By.xpath("//button[.='Done']")).click();	     
+	        
+	        driver.findElement(By.xpath("//button[.='Save']")).click();		
+		    driver.findElement(By.xpath("//button[.='Create']")).click();		
+		
+		    WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(10));
+
+	  		try {
+	  			WebElement successMessage=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h4[contains(text(),'Meeting details added successfully')]")));
+	  			
+	  			// If success message is found, print it
+	  			System.out.println("Success message: " + successMessage.getText());
+	  			System.out.println("This testcase pass");
+	  		}catch(Exception e) {
+	  			System.out.println("Error message found.");
+	  			System.out.println("This testcase fails");
+	  		}			    		     
+		}
+		*/
+		
+		@Test(priority=30)
+		 
+		 void LeadsNewTaskClosedActivities() throws InterruptedException {
+		    // For Annual revenue field update
+		    driver.findElement(By.xpath("//p[contains(text(),'Home')]")).click();
+		    driver.findElement(By.xpath("//p[contains(text(),'CRM')]")).click();
+		    driver.findElement(By.xpath("//p[contains(text(),'Leads')]")).click();
+		    Thread.sleep(2000);
+			
+		    driver.findElement(By.xpath("//div[@class='d-flex w-50 justify-content-end gap-2']")).click();
+		    driver.findElement(By.xpath("(//td[@class='overflow_text leadName cursorPointer'])[1]")).click();
+		
+		    driver.findElement(By.xpath("//li[.='Open Activities']")).click();
+		    Thread.sleep(500);
+		
+		    driver.findElement(By.xpath("//button[.='Add New']")).click();
+		    Thread.sleep(500);
+		
+		    driver.findElement(By.xpath("//li[.='Task']")).click();
+		    Thread.sleep(500);
+				
+		    driver.findElement(By.xpath("//input[@name='subject']")).sendKeys(generateRandomsubject());		    
+		    Thread.sleep(500);
+		  
+		    driver.findElement(By.xpath("//input[@class='insertCommonInputFieldCalls cursorPointer w-100']")).click();
+		    Thread.sleep(500);
+		    
+		    
+		    driver.findElement(By.xpath("//input[@class='insertCommonInputFieldCalls cursorPointer w-100']")).click();
+		    Thread.sleep(500);
+				
+		    driver.findElement(By.xpath("//button[.='Next']")).click();
+		    Thread.sleep(500);
+		    
+		    driver.findElement(By.xpath("//input[@class='insertCommonInputFieldCalls cursorPointer w-100']")).click();
+		    Thread.sleep(500);
+		    
+		    WebElement Completed=driver.findElement(By.xpath("//li[@class='cursorPointer list-group-item'][4]"));
+		    Actions act=new Actions(driver);
+		    Thread.sleep(500);
+		    act.moveToElement(Completed).click().perform();
+		    Thread.sleep(500);
+		
+	    driver.findElement(By.xpath("//button[.='Save']")).click();
+		    Thread.sleep(500);
+		
+		    WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(10));
+   		try {
+   			WebElement successMessage=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h4[contains(text(),'Task Created Succesfully')]")));
+   			// If success message is found, print it
+   			System.out.println("Success message: " + successMessage.getText());
+   		}catch(Exception e) {
+   			System.out.println("Error message found.");
+   		}  		
+	}
+   
+
+		@Test(priority=31)
+		 
+		 void LeadsConvert() throws InterruptedException {
+		    // For Annual revenue field update
+		    driver.findElement(By.xpath("//p[contains(text(),'Home')]")).click();
+		    driver.findElement(By.xpath("//p[contains(text(),'CRM')]")).click();
+		    driver.findElement(By.xpath("//p[contains(text(),'Leads')]")).click();
+		    Thread.sleep(2000);			
+		    driver.findElement(By.xpath("//div[@class='d-flex w-50 justify-content-end gap-2']")).click();
+		    driver.findElement(By.xpath("(//td[@class='overflow_text leadName cursorPointer'])[1]")).click();		
+		   
+		    driver.findElement(By.xpath("//button[.='Convert']")).click();		
+		    driver.findElement(By.xpath("//button[.='Convert']")).click();		
+
+		    WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(10));
+	   		try {
+	   			WebElement successMessage=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h4[contains(text(),'Lead Converted Successfull')]")));
+	   			// If success message is found, print it
+	   			System.out.println("Success message: " + successMessage.getText());
+	   		}catch(Exception e) {
+	   			System.out.println("Error message found.");
+	   		}  
+		}
+		
+		@Test(priority=32)
+		 
+		 void LeadsConvertWithDeals() throws InterruptedException 
+		{
+		    // For Annual revenue field update
+		    driver.findElement(By.xpath("//p[contains(text(),'Home')]")).click();
+		    driver.findElement(By.xpath("//p[contains(text(),'CRM')]")).click();
+		    driver.findElement(By.xpath("//p[contains(text(),'Leads')]")).click();
+		    Thread.sleep(2000);			
+		    driver.findElement(By.xpath("//div[@class='d-flex w-50 justify-content-end gap-2']")).click();
+		    driver.findElement(By.xpath("(//td[@class='overflow_text leadName cursorPointer'])[1]")).click();		
+		   
+		    driver.findElement(By.xpath("//button[.='Convert']")).click();			
+		    driver.findElement(By.xpath("//input[@class='cursorPointer']")).click();
+		    driver.findElement(By.xpath("//input[@name='amount']")).sendKeys(generateamount());
+            Thread.sleep(5000);
+		    
+		    driver.findElement(By.xpath("(//div[@class=' css-qav5hl-singleValue'])[1]")).click();
+            Thread.sleep(500);
+		    driver.findElement(By.xpath("//div[.='Value Proposition']")).click();
+
+		    
+		    JavascriptExecutor Cjs=(JavascriptExecutor)driver;
+		    Cjs.executeScript("window.scrollTo(0,-1000)");
+		    Thread.sleep(1000);
+		    
+		    driver.findElement(By.xpath("//button[.='Convert']")).click();		
+
+		    WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(10));
+	   		try {
+	   			WebElement successMessage=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h4[contains(text(),'Lead Converted Successfull')]")));
+	   			// If success message is found, print it
+	   			System.out.println("Success message: " + successMessage.getText());
+	   		}catch(Exception e) {
+	   			System.out.println("Error message found.");
+	   		} 
+		
+		}
+	
+		
+		
+		
+		    
+		    
+		    
+		    
+		    
+		    
+					
 }

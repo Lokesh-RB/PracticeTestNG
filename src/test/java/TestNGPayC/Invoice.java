@@ -684,7 +684,7 @@ public class Invoice {
 
  		Thread.sleep(1000);	 
 	}
-	*/
+	
 	
 	@Test(priority=13)
 	void Invoice_Note() throws InterruptedException
@@ -733,8 +733,67 @@ public class Invoice {
 	    driver.findElement(By.xpath("//textarea[@class='notesClass']")).sendKeys("dss efewfewfd ");
 	    driver.findElement(By.xpath("//input[@placeholder='Add Title']")).clear();
 	    driver.findElement(By.xpath("//input[@placeholder='Add Title']")).sendKeys("rty rtytyrty ");        	
-      	driver.findElement(By.xpath("(//button[@class='editNoteButton'])[2]")).click();
-	
-	
+      	driver.findElement(By.xpath("(//button[@class='editNoteButton'])[2]")).click();	
 	}
+	*/
+	
+	@Test(priority=15)
+	void Invoice_Edit_With_Without_Mandatory_fields() throws InterruptedException 
+	{
+		
+		  driver.findElement(By.xpath("//p[contains(text(),'Home')]")).click();
+		  driver.findElement(By.xpath("//p[contains(text(),'Commerce')]")).click();
+	      driver.findElement(By.xpath("//p[contains(text(),'Invoice')]")).click();
+	      driver.findElement(By.xpath("//div[contains(text(),'10 Records Per Page')]")).click();
+	      
+	      driver.findElement(By.xpath("(//td[@class='overflow_text pe-1 leadName cursorPointer'])[2]")).click();
+	      driver.findElement(By.xpath("//button[contains(text(),'Edit')]")).click();
+
+       	JavascriptExecutor js5=(JavascriptExecutor)driver;
+       	js5.executeScript("window.scrollTo(0,1400)");
+       	Thread.sleep(2000);
+       	
+       	driver.findElement(By.xpath("(//input[@type='number'])[2]")).sendKeys("10");
+     	driver.findElement(By.xpath("(//input[@type='number'])[2]")).sendKeys("5");
+
+     	driver.findElement(By.xpath("//span[@class='cursorPointer']")).click();
+     	driver.findElement(By.xpath("//input[@name='percentage']")).sendKeys("23");
+     	driver.findElement(By.xpath("//button[.='Done']")).click();
+     	
+     	driver.findElement(By.xpath("//button[.='Add Row']")).click();
+     	driver.findElement(By.xpath("(//input[@type='number'])[2]")).sendKeys("10");
+     	driver.findElement(By.xpath("(//input[@type='number'])[2]")).sendKeys("5");
+
+     	driver.findElement(By.xpath("//span[@class='cursorPointer']")).click();
+     	driver.findElement(By.xpath("//input[@name='percentage']")).sendKeys("23");
+     	driver.findElement(By.xpath("//button[.='Done']")).click();    	
+
+     	JavascriptExecutor js6=(JavascriptExecutor)driver;
+     	js6.executeScript("window.scrollTo(0,-1400)");
+     	Thread.sleep(1000);
+    
+     	driver.findElement(By.xpath("//button[.='Update']")).click();
+    
+     	WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(10));
+	    	   
+	    	   try {
+	    		   WebElement successMessage=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h4[contains(text(),'Shared successfully')]")));
+	    		   // If success message is found, print it
+			         System.out.println("Success message: " + successMessage.getText());
+	    	   }catch(Exception e) {
+	    		   System.out.println("No success or error message found.");
+	    	   }
+	    	   
+	    	   
+	    	   
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
