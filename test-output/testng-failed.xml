@@ -3,11 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="TestNGPayC.Invoice">
+      <class name="TestNGPayC.Calls">
         <methods>
-          <include name="Invoice_Edit_With_Without_Mandatory_fields"/>
+          <include name="CallsDelete"/>
         </methods>
-      </class> <!-- TestNGPayC.Invoice -->
+      </class> <!-- TestNGPayC.Calls -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
